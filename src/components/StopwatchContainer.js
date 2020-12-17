@@ -1,25 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Stopwatch from './Stopwatch';
 
 let StopwatchContainer = () => {
+    
+    const [time, setTime] = useState({s: 0, m: 0, h: 0});
+    const [status, setStatus] = useState('stopped');
+    const [buttonValue, setButtonValue] = useState('Start');
+    const [interv, setInterv] = useState(); 
 
-    let seconds = 0;
-    let minutes = 0;
-    let hours = 0;
-
-    let displaySeconds = 0;
-    let displayMinutes = 0;
-    let displayHours = 0;
+    let seconds = time.s;
+    let minutes = time.m;
+    let hours = time.h;
 
     let clicksAmount = 0;
-    let status = 'stopped';
-    let interval = null;
 
-    let buttonStartStop = 'Start';
-    // let display = '00:00:00';
-
-    let stopWatch = () => {
-        let display;
+    const stopWatch = () => {
         seconds++;
 
         if (seconds / 60 === 1) {
@@ -31,74 +26,46 @@ let StopwatchContainer = () => {
                 hours++;
             }
         }
-
-        if (seconds < 10) {
-            displaySeconds = '0' + seconds.toString();
-        } else {
-            displaySeconds = seconds;
-        }
-
-        if (minutes < 10) {
-            displayMinutes = '0' + minutes.toString();
-        } else {
-            displayMinutes = minutes;
-        }
-
-        if (hours < 10) {
-            displayHours = '0' + hours.toString();
-        } else {
-            displayHours = hours;
-        }
-
-        display = displayHours + ':' + displayMinutes + ':' + displaySeconds;
-        console.log(display);
-
-        return (
-            <div>
-                <div>{display}</div>
-            </div>
-        )
+        return setTime({s: seconds, m: minutes, h: hours});
     }
 
-    let startOrStopButtonClick = () => {
-
+    const startOrStopButtonClick = () => {
         if (status === 'stopped') {
             startCount();
-            status = 'started';
-        } else {
+            setStatus('started');
+        }
+        if (status === 'started') {
             stopCount();
-            buttonStartStop = 'Start';
-            status = 'stopped';
+            setButtonValue('Start');
+            setStatus('stopped');
         }
     }
 
-    let stopCount = () => {
-        clearInterval(interval);
-        seconds = 0;
-        minutes = 0;
-        hours = 0;
-        // display = '00:00:00';
+    const stopCount = () => {
+        clearInterval(interv);
+        setTime({s: 0, m: 0, h: 0});
     }
 
-    let startCount = () => {
-        interval = setInterval(stopWatch, 1000);
-        buttonStartStop = 'Stop';
+    const startCount = () => {
+        setInterv(setInterval(stopWatch, 1000));
+        setButtonValue('Stop');
+        setStatus('started');
     }
 
-    let resetButtonClick = () => {
+    const resetButtonClick = () => {
         if (status === 'started') {
             stopCount();
             startCount();
-        }
+        };
     }
 
-    let freezeCount = () => {
-        clearInterval(interval);
-        buttonStartStop = 'Start';
-        status = 'stopped';
+    const freezeCount = () => {
+        clearInterval(interv);
+        setButtonValue('Start');
+        setStatus('stopped');
     }
 
-    let waitButtonClick = () => {
+    const waitButtonClick = () => {
         clicksAmount++;
 
         if (clicksAmount === 1) {
@@ -114,9 +81,8 @@ let StopwatchContainer = () => {
     return (
         <div>
             <Stopwatch
-                // display={display}
-                stopWatch={stopWatch}
-                buttonStartStop={buttonStartStop}
+                buttonValue={buttonValue}
+                time={time}
                 waitButtonClick={waitButtonClick}
                 resetButtonClick={resetButtonClick}
                 startOrStopButtonClick={startOrStopButtonClick}
