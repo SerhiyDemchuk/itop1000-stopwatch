@@ -12,7 +12,7 @@ let Stopwatch = (props) => {
             </div>
 
             <div className={s.buttons}>
-                <button onClick={props.startOrStopButtonClick}>{props.buttonValue}</button>
+                <button onClick={props.startStopButtonClick}>{props.buttonValue}</button>
                 <button onClick={props.waitButtonClick}>Wait</button>
                 <button onClick={props.resetButtonClick}>Reset</button>
             </div>
