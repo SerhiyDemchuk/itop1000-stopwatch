@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import Stopwatch from './Stopwatch';
-// import { interval, Observable, Subject, timer, fromEvent, from } from 'rxjs';
-// import { repeatWhen, switchMap, takeUntil, map } from 'rxjs/operators';
-import {map, mergeMap, delay, mapTo} from 'rxjs/operators';
-import {from, Observable, of} from 'rxjs';
+import {map} from 'rxjs/operators';
+import {of} from 'rxjs';
 
 let StopwatchContainer = () => {
 
