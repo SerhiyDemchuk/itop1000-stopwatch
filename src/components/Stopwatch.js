@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Stopwatch.module.scss';
 
-let Stopwatch = (props) => {
+const Stopwatch = (props) => {
     return (
         <div className={s.container}>
 
