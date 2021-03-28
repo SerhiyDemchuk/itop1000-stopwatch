@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,UAAU,CAAC;EACP,MAAM,EAAE,KAAK;EACb,KAAK,EAAE,IAAI;CACd;;AAED,AAAA,QAAQ,CAAC;EACL,KAAK,EAAE,IAAI;EACX,SAAS,EAAE,IAAI;EACf,UAAU,EAAE,MAAM;EAClB,MAAM,EAAE,QAAQ;CACnB;;AAED,AAAA,QAAQ,CAAC;EACL,UAAU,EAAE,MAAM;CACrB",
+    "sources": [
+        "Stopwatch.module.scss"
+    ],
+    "names": [],
+    "file": "Stopwatch.module.css"
+}
